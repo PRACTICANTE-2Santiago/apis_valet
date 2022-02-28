@@ -1,4 +1,10 @@
 RewriteEngine on
+
+RewriteRule ^api/administradores/?$ api/administradores.php
+RewriteRule ^api/automovil/?$ api/automovil.php
+RewriteRule ^api/choferes/?$ api/choferes.php
+RewriteRule ^api/choferlugares/?$ api/choferlugares.php
+RewriteRule ^api/comercios/?$ api/comercios.php
 RewriteRule ^api/contador/?$ api/contador.php
 RewriteRule ^api/creditos/?$ api/creditos.php
 RewriteRule ^api/usuarios/?$ api/usuarios.php
