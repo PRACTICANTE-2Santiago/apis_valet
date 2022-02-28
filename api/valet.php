@@ -11,12 +11,12 @@
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         if (isset($_GET['id'])) {
             $id = $conn->real_escape_string($_GET['id']);
-            $sql = $conn->query("SELECT * FROM administradores where id = '$id' ");
+            $sql = $conn->query("SELECT * FROM valet where id = '$id' ");
             $data = $sql->fetch_assoc();
         }
         else{
             $data = array();
-            $sql = $conn->query("SELECT * FROM administradores");
+            $sql = $conn->query("SELECT * FROM valet");
             while ($d = $sql->fetch_assoc()) {
                 $data[] = $d;
             }

@@ -77,6 +77,7 @@ if($_SERVER['REQUEST_METHOD'] === 'PUT') {
 if($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     if (isset($_GET['id'])) {
         $id = $conn->real_escape_string($_GET['id']);
+        $data = json_decode(file_get_contents("php://input"));
         $sql = $conn->query("UPDATE comercios SET  
          id_valet = '".$data->id_valet."'
          , nombre = '".$data->nombre."'
