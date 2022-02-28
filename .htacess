@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteRule ^api/contador/?$ api/contador.php
+RewriteRule ^api/creditos/?$ api/creditos.php
+RewriteRule ^api/usuarios/?$ api/usuarios.php
+RewriteRule ^api/valet/?$ api/valet.php
+RewriteRule ^api/valet/([0-9]+)?$ api/valet.php?id=$1
+
