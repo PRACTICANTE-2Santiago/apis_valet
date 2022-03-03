@@ -29,8 +29,7 @@
     //Metodo POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = json_decode(file_get_contents("php://input"));
-        $sql = $conn->query("INSERT INTO valet (id, 
-                id_creditos, 
+        $sql = $conn->query("INSERT INTO valet (id,
                 id_pin, 
                 nombre, 
                 telefono, 
@@ -38,7 +37,6 @@
                 representante, 
                 estatus) 
             VALUES ('".$data->id."',
-                '".$data->id_creditos."',
                 '".$data->id_pin."',
                 '".$data->nombre."',
                 '".$data->telefono."',
@@ -61,7 +59,6 @@
             $data = json_decode(file_get_contents("php://input"));
             $sql = $conn->query("UPDATE valet SET 
                 id = '".$data->id."', 
-                id_creditos = '".$data->id_creditos."', 
                 id_pin = '".$data->id_pin."', 
                 nombre = '".$data->nombre."', 
                 telefono = '".$data->telefono."', 
@@ -85,7 +82,6 @@
             $data = json_decode(file_get_contents("php://input"));
             $sql = $conn->query("UPDATE valet SET 
                 id = '".$data->id."', 
-                id_creditos = '".$data->id_creditos."', 
                 id_pin = '".$data->id_pin."', 
                 nombre = '".$data->nombre."', 
                 telefono = '".$data->telefono."', 

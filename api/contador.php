@@ -30,14 +30,14 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = json_decode(file_get_contents("php://input"));
         $sql = $conn->query("INSERT INTO cpntador (id, 
-                id_valet, 
+                id_comercios, 
                 id_creditos, 
                 fecha_registro, 
                 total, 
                 stock, 
                 estatus) 
             VALUES ('".$data->id."',
-                '".$data->id_valet."',
+                '".$data->id_comercios."',
                 '".$data->id_creditos."',
                 '".$data->fecha_registro."',
                 '".$data->total."',
@@ -59,7 +59,7 @@
             $data = json_decode(file_get_contents("php://input"));
             $sql = $conn->query("UPDATE contador SET 
                 id = '".$data->id."', 
-                id_valet = '".$data->id_valet."', 
+                id_comercios = '".$data->id_comercios."', 
                 id_creditos = '".$data->id_creditos."', 
                 fecha_registro = '".$data->fecha_registro."', 
                 total = '".$data->total."', 
@@ -82,7 +82,7 @@
             $data = json_decode(file_get_contents("php://input"));
             $sql = $conn->query("UPDATE contador SET 
                 id = '".$data->id."', 
-                id_valet = '".$data->id_valet."', 
+                id_comercios = '".$data->id_comercios."', 
                 id_creditos = '".$data->id_creditos."', 
                 fecha_registro = '".$data->fecha_registro."', 
                 total = '".$data->total."', 

@@ -24,10 +24,10 @@ exit (json_encode($data));
   $data = json_decode(file_get_contents("php://input"));
   $sql = $conn->query("INSERT INTO chofer_lugares (
       id,
-       id_comercios,
-        id_chofer, 
-        fecha_registro,
-         estatus)
+      id_comercios,
+      id_chofer, 
+      fecha_registro,
+      estatus)
   VALUES(
       '".$data->id."',
       '".$data->id_comercios."',

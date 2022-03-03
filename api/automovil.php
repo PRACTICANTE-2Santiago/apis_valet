@@ -24,7 +24,8 @@ exit (json_encode($data));
   $data = json_decode(file_get_contents("php://input"));
   $sql = $conn->query("INSERT INTO automovil (
      id,
-      id_valet
+      id_comercios,
+      id_chofer,
       , placas
       , descripcion
       , foto1
@@ -47,7 +48,8 @@ exit (json_encode($data));
        , condiciones
        , estatus)
   VALUES('".$data->id."',
-  '".$data->id_valet."',
+  '".$data->id_comercios."',
+  '".$data->id_chofer."',
   '".$data->placas."',
   '".$data->descripcion."',
   '".$data->foto1."',
@@ -80,10 +82,12 @@ if($_SERVER['REQUEST_METHOD'] === 'PUT') {
         $id = $conn->real_escape_string($_GET['id']);
         $data = json_decode(file_get_contents("php://input"));
         $sql = $conn->query("UPDATE automovil SET  
-         id_valet = '".$data->id_valet."'
-         , placas = '".$data->placas."'
-         , descripcion = '".$data->descripcion."'
-         , foto1 = '".$data->foto1."'
+         id = '".$data->id."',
+         id_comercios = '".$data->id_comercios."'
+        , id_chofer = '".$data->id_chofer."'
+        , placas = '".$data->placas."'
+        , descripcion = '".$data->descripcion."'
+        , foto1 = '".$data->foto1."'
         , foto2 = '".$data->foto2."'
         ,  foto3 = '".$data->foto3."'
         , id_registro = '".$data->id_registro."'
@@ -116,10 +120,12 @@ if($_SERVER['REQUEST_METHOD'] === 'DELETE') {
         $id = $conn->real_escape_string($_GET['id']);
         $data = json_decode(file_get_contents("php://input"));
         $sql = $conn->query("UPDATE automovil SET  
-         id_valet = '".$data->id_valet."'
-         , placas = '".$data->placas."'
-         , descripcion = '".$data->descripcion."'
-         , foto1 = '".$data->foto1."'
+        id = '".$data->id."',
+          id_comercios = '".$data->id_comercios."'
+        , id_chofer = '".$data->id_chofer."'
+        , placas = '".$data->placas."'
+        , descripcion = '".$data->descripcion."'
+        , foto1 = '".$data->foto1."'
         , foto2 = '".$data->foto2."'
         ,  foto3 = '".$data->foto3."'
         , id_registro = '".$data->id_registro."'

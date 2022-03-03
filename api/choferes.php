@@ -23,20 +23,20 @@ exit (json_encode($data));
  if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $data = json_decode(file_get_contents("php://input"));
   $sql = $conn->query("INSERT INTO choferes (
-      id,
-       id_valet ,
-       usuario,
-        contrasenia,
-         nombre,
-          apellido_paterno,
-           apellido_materno,
-            ine, 
-            licencia, 
-            telefono,
-             correo_electronico,
-              fecha_registro, 
-              token,
-               estatus)
+    id,
+    id_valet ,
+    usuario,
+    contrasenia,
+    nombre,
+    apellido_paterno,
+    apellido_materno,
+    ine, 
+    licencia, 
+    telefono,
+    correo_electronico,
+    fecha_registro, 
+    token,
+    estatus)
   VALUES(
       '".$data->id."',
       '".$data->id_valet."',
@@ -44,14 +44,14 @@ exit (json_encode($data));
       '".$data->contrasenia."',
       '".$data->nombre."',
       '".$data->apellido_paterno."',
-  '".$data->apellido_materno."',
-  '".$data->ine."',
-  '".$data->licencia."',
-  '".$data->telefono."',
-  '".$data->correo_electronico."',
-  '".$data->fecha_registro."',
-  '".$data->token."',
-  '".$data->estatus."')");
+      '".$data->apellido_materno."',
+      '".$data->ine."',
+      '".$data->licencia."',
+      '".$data->telefono."',
+      '".$data->correo_electronico."',
+      '".$data->fecha_registro."',
+      '".$data->token."',
+      '".$data->estatus."')");
   if($sql){
       $data->id = $conn->insert_id;
       exit(json_encode($data));
@@ -70,13 +70,13 @@ if($_SERVER['REQUEST_METHOD'] === 'PUT') {
            nombre = '".$data->nombre."',
            apellido_paterno = '".$data->apellido_paterno."',  
            apellido_materno = '".$data->apellido_materno."',  
-        ine = '".$data->ine."', 
-        licencia = '".$data->licencia."', 
-        telefono = '".$data->telefono."', 
-        correo_electronico = '".$data->correo_electronico."', 
-        fecha_registro = '".$data->fecha_registro."', 
-        token  = '".$data->token."',
-         estatus = '".$data->estatus."' WHERE id = '$id'");
+           ine = '".$data->ine."', 
+           licencia = '".$data->licencia."', 
+           telefono = '".$data->telefono."', 
+           correo_electronico = '".$data->correo_electronico."', 
+           fecha_registro = '".$data->fecha_registro."', 
+           token  = '".$data->token."',
+           estatus = '".$data->estatus."' WHERE id = '$id'");
         if ($sql){
             exit(json_encode(array('status' => 'success')));
         }else{
@@ -96,13 +96,13 @@ if($_SERVER['REQUEST_METHOD'] === 'DELETE') {
            nombre = '".$data->nombre."',
            apellido_paterno = '".$data->apellido_paterno."',  
            apellido_materno = '".$data->apellido_materno."',  
-            ine = '".$data->ine."', 
-            licencia = '".$data->licencia."', 
-            telefono = '".$data->telefono."', 
-            correo_electronico = '".$data->correo_electronico."', 
-            fecha_registro = '".$data->fecha_registro."', 
-            token  = '".$data->token."',
-            estatus = '".$data->estatus."' WHERE id = '$id'");
+           ine = '".$data->ine."', 
+           licencia = '".$data->licencia."', 
+           telefono = '".$data->telefono."', 
+           correo_electronico = '".$data->correo_electronico."', 
+           fecha_registro = '".$data->fecha_registro."', 
+           token  = '".$data->token."',
+           estatus = '".$data->estatus."' WHERE id = '$id'");
         if ($sql){
             exit(json_encode(array('status' => 'eliminado')));
         }else{
