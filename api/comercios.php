@@ -24,8 +24,7 @@ exit (json_encode($data));
   $data = json_decode(file_get_contents("php://input"));
   $sql = $conn->query("INSERT INTO comercios (
     id,
-    id_valet,
-    id_creditos, 
+    id_valet, 
     nombre,
     calle,
     codigo_postal,
@@ -37,7 +36,6 @@ exit (json_encode($data));
     estatus) 
   VALUES('".$data->id."',
   '".$data->id_valet."',
-  '".$data->id_creditos."',
   '".$data->nombre."',
   '".$data->calle."',
   '".$data->codigo_postal."',
@@ -60,7 +58,6 @@ if($_SERVER['REQUEST_METHOD'] === 'PUT') {
         $sql = $conn->query("UPDATE comercios SET 
         id =  '".$data->id."'
         ,id_valet = '".$data->id_valet."'
-        ,id_creditos = '".$data->id_creditos."'
         , nombre = '".$data->nombre."'
         , calle = '".$data->calle."'
         , codigo_postal = '".$data->codigo_postal."'
@@ -85,7 +82,6 @@ if($_SERVER['REQUEST_METHOD'] === 'DELETE') {
         $sql = $conn->query("UPDATE comercios SET  
          id =  '".$data->id."'
         ,id_valet = '".$data->id_valet."'
-        ,id_creditos = '".$data->id_creditos."'
         , nombre = '".$data->nombre."'
         , calle = '".$data->calle."'
         , codigo_postal = '".$data->codigo_postal."'
