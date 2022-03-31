@@ -8,16 +8,28 @@ $conn = new mysqli('localhost', 'root', '', 'valet_parking');
         $id = $conn->real_escape_string($_GET['id']);
         $sql = $conn->query("SELECT * FROM choferes where id = '$id' ");
         $data = $sql->fetch_assoc(); 
-    }else {
-    $data =array();
-    $sql = $conn->query("SELECT * FROM  choferes");
-    while($d = $sql->fetch_assoc()) {
-        $data[] = $d;
-       
+
+    }elseif (isset($_GET['usuario'])&& isset($_GET['contrasenia'])&& isset($_GET['id'])) {
+        $user = $conn->real_escape_string($_GET['usuario']);
+        $pass = $conn->real_escape_string($_GET['contrasenia']);
+        $id = $conn->real_escape_string($_GET['id']);
+        $sql = $conn->query("SELECT choferes.id, choferes.id_valet, choferes.usuario, choferes.contrasenia, choferes.nombre, choferes.apellido_paterno, choferes.apellido_materno, choferes.ine, choferes.licencia, choferes.telefono, choferes.correo_electronico, choferes.fecha_registro, choferes.token, choferes.estatus
+        
+        FROM choferes, valet  WHERE usuario = '$user' AND contrasenia = '$pass' AND valet.id = '$id'and  valet.id=choferes.id_valet ");
+        $data = $sql->fetch_assoc();
+    }elseif (isset($_GET['id']) && isset($_GET['token'])) {
+        $id = $conn->real_escape_string($_GET['id']);
+        $token = $conn->real_escape_string($_GET['token']);
+        $sql = $conn->query("SELECT choferes.id, choferes.token FROM choferes WHERE id = '$id' AND token = '$token' ");
+        $data = $sql->fetch_assoc();
+    }elseif(isset($_GET['id_valet'])){
+        $id = $conn->real_escape_string($_GET['id_valet']);
+        $sql = $conn->query("SELECT * FROM choferes where id_valet = '$id' ");
+        $data = $sql->fetch_assoc(); 
+
     }
-  
-}
-exit (json_encode($data)); 
+     
+    exit (json_encode($data)); 
 }
 
  if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -59,7 +71,37 @@ exit (json_encode($data));
 
 }
 if($_SERVER['REQUEST_METHOD'] === 'PUT') {
-    if(isset($_GET['id'])){
+     if(isset($_GET['id']) and isset($_GET['token'])){
+
+                $id=$conn->real_escape_string($_GET['id']);
+                $token=$conn->real_escape_string($_GET['token']);
+               // $data=json_decode(file_get_contents("php://input"));
+                $sql=$conn->query("update  choferes SET token='".$token."' where id='$id'");
+
+                if($sql>0){
+                  exit(json_encode(array('status'=>'success')));
+                }else{
+                   exit(json_encode(array('status'=>'errorr')));
+
+                }
+
+
+       }else if(isset($_GET['id']) and isset($_GET['contrasenia'] )){
+                $contrasenia=$conn->real_escape_string($_GET['contrasenia']);
+
+                $id=$conn->real_escape_string($_GET['id']);
+                $data=json_decode(file_get_contents("php://input"));
+                $sql=$conn->query("update  choferes SET
+             contrasenia ='".$contrasenia."'
+           where id='$id'");
+
+                if($sql>0){
+                  exit(json_encode(array('status'=>'success')));
+                }else{
+                   exit(json_encode(array('status'=>'errorr')));
+
+                }
+}else if(isset($_GET['id'])){
         $id = $conn->real_escape_string($_GET['id']);
         $data = json_decode(file_get_contents("php://input"));
         $sql = $conn->query("UPDATE choferes SET 

@@ -9,12 +9,19 @@
 
     //Metogo GET
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        if (isset($_GET['id'])) {
+        if (isset($_GET['id_pin'])) {
+                $id = $conn->real_escape_string($_GET['id_pin']);
+                $sql = $conn->query("SELECT * FROM valet where id_pin = '$id' ");
+                $data = $sql->fetch_assoc();
+        }elseif (isset($_GET['id'])) {
             $id = $conn->real_escape_string($_GET['id']);
             $sql = $conn->query("SELECT * FROM valet where id = '$id' ");
             $data = $sql->fetch_assoc();
-        }
-        else{
+        }elseif (isset($_GET['nombre'])) {
+            $id = $conn->real_escape_string($_GET['nombre']);
+            $sql = $conn->query("SELECT id, id_pin, nombre FROM valet where id = '$id' ");
+            $data = $sql->fetch_assoc();
+        }else{
             $data = array();
             $sql = $conn->query("SELECT * FROM valet");
             while ($d = $sql->fetch_assoc()) {

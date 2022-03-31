@@ -4,11 +4,21 @@ $conn = new mysqli('localhost', 'root', '', 'valet_parking');
 
  
  if($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset ($_GET['id'])) {
+    if (isset($_GET['id'])) {
         $id = $conn->real_escape_string($_GET['id']);
         $sql = $conn->query("SELECT * FROM chofer_lugares where id = '$id' ");
         $data = $sql->fetch_assoc(); 
-    }else {
+    }
+    elseif (isset($_GET['id_chofer'])) {
+        $id = $conn->real_escape_string($_GET['id_chofer']);
+        $sql = $conn->query("SELECT comercios.id, comercios.nombre, comercios.telefono, comercios.id_valet FROM chofer_lugares INNER JOIN comercios ON chofer_lugares.id_comercios = comercios.id AND chofer_lugares.id_chofer = '$id' ");
+        $data = $sql->fetch_assoc();
+        while($d = $sql->fetch_assoc()) {
+            $data[] = $d;
+           
+        } 
+    }
+    else {
     $data =array();
     $sql = $conn->query("SELECT * FROM  chofer_lugares");
     while($d = $sql->fetch_assoc()) {

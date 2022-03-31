@@ -1,4 +1,4 @@
-RewriteEngine on
+RewriteEngine off
 
 RewriteRule ^api/administradores/?$ api/administradores.php
 RewriteRule ^api/automovil/?$ api/automovil.php
@@ -9,5 +9,10 @@ RewriteRule ^api/contador/?$ api/contador.php
 RewriteRule ^api/creditos/?$ api/creditos.php
 RewriteRule ^api/usuarios/?$ api/usuarios.php
 RewriteRule ^api/valet/?$ api/valet.php
-RewriteRule ^api/valet/([0-9]+)?$ api/valet.php?id=$1
+RewriteRule ^api/comercios/([0-9]+)?$ api/comercios.php?id_valet=$
+RewriteRule ^api/valet/([0-9]+)?$ api/valet.php?id=$
+RewriteRule ^api/valet/([0-9]+)?$ api/valet.php?id_pin=$
+RewriteRule ^api/valet/([0-9]+)?$ api/valet.php?nombre=$
+RewriteRule ^api/choferes/([0-9]+)?$ api/choferes.php?id_pin=$
+RewriteRule ^api/choferes/([0-9]+)?$ api/choferes.php?id=$&token=$
 

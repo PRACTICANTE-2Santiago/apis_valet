@@ -3,12 +3,21 @@ require_once 'headers.php';
 $conn = new mysqli('localhost', 'root', '', 'valet_parking');
 
  
- if($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset ($_GET['id'])) {
+if($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (isset($_GET['id_valet'])) {
+        $id = $conn->real_escape_string($_GET['id_valet']);
+        $sql = $conn->query("SELECT * FROM comercios WHERE id_valet='$id' ");
+        while($d = $sql->fetch_assoc()) {
+            $data[] = $d;
+           
+        }
+    }
+    elseif (isset($_GET['id'])) {
         $id = $conn->real_escape_string($_GET['id']);
-        $sql = $conn->query("SELECT * FROM comercios where id = '$id' ");
-        $data = $sql->fetch_assoc(); 
-    }else {
+        $sql = $conn->query("SELECT * FROM comercios WHERE id='$id' ");
+        $data = $sql->fetch_assoc();
+    }
+    else {
     $data =array();
     $sql = $conn->query("SELECT * FROM  comercios");
     while($d = $sql->fetch_assoc()) {
